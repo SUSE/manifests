@@ -92,6 +92,28 @@ spec:
         path: cert-manager/cert-manager
     name: cert-manager
   - kustomizeConfig:
+    overlays:
+    - application
+    parameters:
+      - name: namespace
+        value: istio-system
+      - name: userid-header
+        value: kubeflow-userid
+      - name: oidc_provider
+        value: http://dex.auth.svc.cluster.local:5556/dex
+      - name: oidc_redirect_uri
+        value: /login/oidc
+      - name: oidc_auth_url
+        value: /dex/auth
+      - name: skip_auth_uri
+        value: /dex
+      - name: client_id
+        value: kubeflow-oidc-authservice
+      repoRef:
+        name: manifests
+        path: istio/oidc-authservice
+    name: oidc-authservice
+  - kustomizeConfig:
       repoRef:
         name: manifests
         path: metacontroller
