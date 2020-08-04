@@ -377,6 +377,8 @@ spec:
       parameters:
       - name: admin
         value: johnDoe@acme.com
+      - name: userid-header
+        value: kubeflow-userid
       repoRef:
         name: manifests
         path: profiles
